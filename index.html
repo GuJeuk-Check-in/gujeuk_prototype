@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>첫 방문 수기 등록부</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="tablet">
+      <section class="paper" aria-label="첫 방문 수기 등록부">
+        <header class="paper-header">
+          <div>
+            <h1>[출입자 수기명부 작성 양식]</h1>
+            <p>빈칸에 펜으로 작성해주세요.</p>
+          </div>
+        </header>
+
+        <div class="ledger-wrap">
+          <table class="ledger" aria-label="수기 등록 표">
+            <colgroup>
+              <col class="col-date" />
+              <col class="col-time" />
+              <col class="col-agree" />
+              <col class="col-agree" />
+              <col class="col-name" />
+              <col class="col-phone" />
+              <col class="col-purpose" />
+              <col class="col-note" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>날짜</th>
+                <th>방문<br />시간</th>
+                <th>개인정보<br />수집·이용<br />동의</th>
+                <th>개인정보<br />제3자 제공<br />동의</th>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>거주지 / 방문목적</th>
+                <th>비고</th>
+              </tr>
+            </thead>
+            <tbody id="ledgerBody">
+              <tr class="write-row">
+                <td class="fixed-cell" id="dateCell">-</td>
+                <td class="fixed-cell" id="timeCell">-</td>
+                <td>
+                  <button class="check-cell" type="button" data-check="privacyUse" aria-pressed="false">✓</button>
+                </td>
+                <td>
+                  <button class="check-cell" type="button" data-check="privacyThirdParty" aria-pressed="false">✓</button>
+                </td>
+                <td class="ink-cell"><canvas class="ink-canvas" data-field="name"></canvas></td>
+                <td class="ink-cell"><canvas class="ink-canvas" data-field="phone"></canvas></td>
+                <td class="ink-cell"><canvas class="ink-canvas" data-field="residencePurpose"></canvas></td>
+                <td class="ink-cell"><canvas class="ink-canvas" data-field="note"></canvas></td>
+              </tr>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <footer class="paper-actions">
+          <button class="action secondary" type="button" id="clearButton">지우기</button>
+          <button class="action primary" type="button" id="saveButton">등록 완료</button>
+        </footer>
+      </section>
+    </main>
+
+    <section class="complete" id="completeLayer" aria-live="polite" aria-hidden="true">
+      <div class="complete-card">
+        <strong>등록되었습니다.</strong>
+        <span id="savedAtText">-</span>
+        <button class="action primary" type="button" id="nextButton">다음 작성</button>
+      </div>
+    </section>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

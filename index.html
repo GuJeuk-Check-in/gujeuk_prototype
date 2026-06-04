@@ -3,70 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>첫 방문 수기 등록부</title>
+    <title>첫 방문 수기 등록</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main class="tablet">
-      <section class="paper" aria-label="첫 방문 수기 등록부">
+      <section class="paper" aria-label="첫 방문 수기 등록">
         <header class="paper-header">
           <div>
-            <h1>[출입자 수기명부 작성 양식]</h1>
-            <p>빈칸에 펜으로 작성해주세요.</p>
+            <h1>첫 방문 수기 등록</h1>
+            <p>펜으로 각 칸에 크게 작성해주세요.</p>
+          </div>
+
+          <div class="auto-meta" aria-label="자동 입력 정보">
+            <div>
+              <span>방문 날짜</span>
+              <strong id="dateCell">-</strong>
+            </div>
+            <div>
+              <span>방문 시각</span>
+              <strong id="timeCell">-</strong>
+            </div>
           </div>
         </header>
 
-        <div class="ledger-wrap">
-          <table class="ledger" aria-label="수기 등록 표">
-            <colgroup>
-              <col class="col-date" />
-              <col class="col-time" />
-              <col class="col-agree" />
-              <col class="col-agree" />
-              <col class="col-name" />
-              <col class="col-phone" />
-              <col class="col-purpose" />
-              <col class="col-note" />
-            </colgroup>
-            <thead>
-              <tr>
-                <th>날짜</th>
-                <th>방문<br />시간</th>
-                <th>개인정보<br />수집·이용<br />동의</th>
-                <th>개인정보<br />제3자 제공<br />동의</th>
-                <th>이름</th>
-                <th>전화번호</th>
-                <th>거주지 / 방문목적</th>
-                <th>비고</th>
-              </tr>
-            </thead>
-            <tbody id="ledgerBody">
-              <tr class="write-row">
-                <td class="fixed-cell" id="dateCell">-</td>
-                <td class="fixed-cell" id="timeCell">-</td>
-                <td>
-                  <button class="check-cell" type="button" data-check="privacyUse" aria-pressed="false">✓</button>
-                </td>
-                <td>
-                  <button class="check-cell" type="button" data-check="privacyThirdParty" aria-pressed="false">✓</button>
-                </td>
-                <td class="ink-cell"><canvas class="ink-canvas" data-field="name"></canvas></td>
-                <td class="ink-cell"><canvas class="ink-canvas" data-field="phone"></canvas></td>
-                <td class="ink-cell"><canvas class="ink-canvas" data-field="residencePurpose"></canvas></td>
-                <td class="ink-cell"><canvas class="ink-canvas" data-field="note"></canvas></td>
-              </tr>
-              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            </tbody>
-          </table>
-        </div>
+        <section class="writing-board" aria-label="방문자 수기 입력">
+          <div class="field-card field-name">
+            <span class="field-label">이름</span>
+            <canvas class="ink-canvas" data-field="name"></canvas>
+          </div>
+
+          <div class="field-card field-age">
+            <span class="field-label">나이</span>
+            <canvas class="ink-canvas" data-field="age"></canvas>
+          </div>
+
+          <div class="field-card field-contact">
+            <span class="field-label">연락처</span>
+            <canvas class="ink-canvas" data-field="contact"></canvas>
+          </div>
+
+          <div class="field-card field-purpose">
+            <span class="field-label">방문목적</span>
+            <canvas class="ink-canvas" data-field="purpose"></canvas>
+          </div>
+
+          <div class="companion-card">
+            <span class="field-label">동행인 수 <small>(누르면 +1)</small></span>
+            <div class="companion-grid">
+              <button class="count-button" type="button" data-count="maleCount" aria-label="남자 동행인 수 증가">
+                <span>남자</span>
+                <strong data-count-value="maleCount">0</strong>
+                <small>누르면 +1</small>
+              </button>
+              <button class="count-button" type="button" data-count="femaleCount" aria-label="여자 동행인 수 증가">
+                <span>여자</span>
+                <strong data-count-value="femaleCount">0</strong>
+                <small>누르면 +1</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="privacy-card">
+            <div>
+              <span class="field-label">개인정보 동의 여부</span>
+              <p>동의합니다.</p>
+            </div>
+            <button class="check-cell" type="button" data-check="privacyAgreed" aria-pressed="false">✓</button>
+          </div>
+        </section>
 
         <footer class="paper-actions">
           <button class="action secondary" type="button" id="clearButton">지우기</button>

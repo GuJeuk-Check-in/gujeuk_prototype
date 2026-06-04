@@ -1,0 +1,403 @@
+:root {
+  --ink: #151515;
+  --muted: #6f6a60;
+  --paper: #fffaf0;
+  --field: #fffefd;
+  --line: #26211b;
+  --soft-line: rgba(38, 33, 27, 0.16);
+  --frame: #202020;
+  --primary: #176b5d;
+  --secondary: #eee8dd;
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+  overscroll-behavior: none;
+}
+
+body {
+  color: var(--ink);
+  font-family:
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: #d9d3c9;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.tablet {
+  display: grid;
+  min-height: 100vh;
+  padding: 16px;
+  place-items: center;
+}
+
+.panel {
+  width: min(1120px, 100%);
+  height: min(760px, calc(100vh - 32px));
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 16px;
+  padding: 22px;
+  border: 16px solid var(--frame);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at top left, rgba(23, 107, 93, 0.08), transparent 22rem),
+    var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.panel-header {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.panel-header h1,
+.panel-header p {
+  margin: 0;
+}
+
+.panel-header h1 {
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.panel-header p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.auto-meta {
+  min-width: 150px;
+  padding: 12px 14px;
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.auto-meta span,
+.auto-meta strong {
+  display: block;
+}
+
+.auto-meta span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.auto-meta strong {
+  margin-top: 5px;
+  font-family: "Times New Roman", serif;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.input-board {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: 1.08fr 0.92fr;
+  grid-template-rows: 1fr 0.9fr 1.45fr 1fr auto;
+  gap: 14px;
+}
+
+.field-card,
+.companion-card,
+.privacy-card {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--line);
+  border-radius: 24px;
+  background: var(--field);
+}
+
+.field-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+  padding: 16px;
+}
+
+.field-card span,
+.section-label,
+.privacy-card strong {
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.field-card input,
+.field-card textarea,
+.companion-card input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  color: var(--ink);
+  background:
+    linear-gradient(to bottom, transparent 0 68%, var(--soft-line) 68% 70%, transparent 70%),
+    #ffffff;
+}
+
+.field-card input,
+.companion-card input {
+  min-height: 58px;
+  padding: 8px 10px;
+  border-radius: 14px;
+  font-size: clamp(24px, 3.2vw, 34px);
+  font-weight: 800;
+}
+
+.field-card textarea {
+  min-height: 100%;
+  resize: none;
+  padding: 10px;
+  border-radius: 14px;
+  font-size: clamp(22px, 2.7vw, 30px);
+  font-weight: 800;
+}
+
+.field-card input:focus,
+.field-card textarea:focus,
+.companion-card input:focus {
+  box-shadow: 0 0 0 4px rgba(23, 107, 93, 0.14);
+}
+
+.field-name {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.field-age {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.field-contact {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+}
+
+.field-purpose {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+}
+
+.companion-card {
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  padding: 14px;
+}
+
+.section-label {
+  flex: 0 0 auto;
+  margin-bottom: 8px;
+}
+
+.companion-grid {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.companion-grid label {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  color: var(--muted);
+  border: 1.5px solid var(--soft-line);
+  border-radius: 18px;
+  background: #ffffff;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.companion-card input {
+  min-height: 44px;
+  text-align: center;
+}
+
+.privacy-card {
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px;
+}
+
+.privacy-card strong,
+.privacy-card small {
+  display: block;
+}
+
+.privacy-card small {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.privacy-card input {
+  flex: 0 0 76px;
+  width: 76px;
+  height: 76px;
+  accent-color: var(--primary);
+}
+
+.form-actions {
+  grid-column: 1 / 3;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.action {
+  min-width: 140px;
+  min-height: 58px;
+  border: 0;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.action.primary {
+  color: #ffffff;
+  background: var(--primary);
+}
+
+.action.secondary {
+  color: var(--ink);
+  background: var(--secondary);
+}
+
+.complete {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.complete.open {
+  display: grid;
+}
+
+.complete-card {
+  width: min(420px, 100%);
+  padding: 28px;
+  text-align: center;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.complete-card strong,
+.complete-card span {
+  display: block;
+}
+
+.complete-card strong {
+  font-size: 26px;
+}
+
+.complete-card span {
+  margin: 10px 0 22px;
+  color: var(--muted);
+}
+
+.complete-card .action {
+  width: 100%;
+}
+
+@media (max-width: 560px) {
+  .tablet {
+    padding: 0;
+  }
+
+  .panel {
+    min-height: 100vh;
+    padding: 14px;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .auto-meta,
+  .input-board {
+    grid-template-columns: 1fr;
+  }
+
+  .input-board {
+    grid-template-rows: 132px 132px 132px 220px 168px 168px auto;
+  }
+
+  .field-name,
+  .field-age,
+  .field-contact,
+  .field-purpose,
+  .companion-card,
+  .privacy-card,
+  .form-actions {
+    grid-column: 1 / 2;
+  }
+
+  .field-name {
+    grid-row: 1 / 2;
+  }
+
+  .field-age {
+    grid-row: 2 / 3;
+  }
+
+  .field-contact {
+    grid-row: 3 / 4;
+  }
+
+  .field-purpose {
+    grid-row: 4 / 5;
+  }
+
+  .companion-card {
+    grid-row: 5 / 6;
+  }
+
+  .privacy-card {
+    grid-row: 6 / 7;
+  }
+
+  .form-actions {
+    grid-row: 7 / 8;
+  }
+}

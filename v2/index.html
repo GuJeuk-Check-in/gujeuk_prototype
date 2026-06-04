@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>첫 방문 입력 등록</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="tablet">
+      <section class="panel" aria-label="첫 방문 입력 등록">
+        <header class="panel-header">
+          <div>
+            <h1>첫 방문 입력 등록</h1>
+            <p>펜 대신 키보드로 방문 정보를 입력해주세요.</p>
+          </div>
+
+          <div class="auto-meta" aria-label="자동 입력 정보">
+            <span>방문 날짜</span>
+            <strong id="dateText">-</strong>
+          </div>
+        </header>
+
+        <form class="input-board" id="visitForm" autocomplete="on">
+          <label class="field-card field-name">
+            <span>이름</span>
+            <input name="name" type="text" maxlength="30" autocomplete="name" required />
+          </label>
+
+          <label class="field-card field-age">
+            <span>나이</span>
+            <input name="age" type="number" min="0" max="130" inputmode="numeric" required />
+          </label>
+
+          <label class="field-card field-contact">
+            <span>연락처</span>
+            <input name="contact" type="tel" inputmode="tel" maxlength="13" autocomplete="tel" placeholder="01012345678" required />
+          </label>
+
+          <label class="field-card field-purpose">
+            <span>방문목적</span>
+            <textarea name="purpose" rows="4" required></textarea>
+          </label>
+
+          <section class="companion-card" aria-label="동행인 수">
+            <span class="section-label">동행인 수</span>
+            <div class="companion-grid">
+              <label>
+                남자
+                <input name="maleCount" type="number" min="0" max="99" inputmode="numeric" value="0" required />
+              </label>
+              <label>
+                여자
+                <input name="femaleCount" type="number" min="0" max="99" inputmode="numeric" value="0" required />
+              </label>
+            </div>
+          </section>
+
+          <label class="privacy-card">
+            <span>
+              <strong>개인정보 동의 여부</strong>
+              <small>개인정보 수집 및 이용에 동의합니다.</small>
+            </span>
+            <input name="privacyAgreed" type="checkbox" required />
+          </label>
+
+          <footer class="form-actions">
+            <button class="action secondary" type="reset">지우기</button>
+            <button class="action primary" type="submit">등록 완료</button>
+          </footer>
+        </form>
+      </section>
+    </main>
+
+    <section class="complete" id="completeLayer" aria-live="polite" aria-hidden="true">
+      <div class="complete-card">
+        <strong>등록되었습니다.</strong>
+        <span id="savedAtText">-</span>
+        <button class="action primary" type="button" id="nextButton">다음 작성</button>
+      </div>
+    </section>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

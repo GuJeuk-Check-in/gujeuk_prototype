@@ -4,6 +4,7 @@ const canvases = [...document.querySelectorAll(".ink-canvas")];
 const dateCell = document.querySelector("#dateCell");
 const timeCell = document.querySelector("#timeCell");
 const checkButtons = [...document.querySelectorAll(".check-cell")];
+const countButtons = [...document.querySelectorAll(".count-button")];
 const clearButton = document.querySelector("#clearButton");
 const saveButton = document.querySelector("#saveButton");
 const completeLayer = document.querySelector("#completeLayer");
@@ -11,6 +12,10 @@ const savedAtText = document.querySelector("#savedAtText");
 const nextButton = document.querySelector("#nextButton");
 
 const inkState = new WeakMap();
+const countState = {
+  maleCount: 0,
+  femaleCount: 0,
+};
 
 const pad = (value) => String(value).padStart(2, "0");
 
@@ -121,6 +126,22 @@ const clearInk = () => {
     button.classList.remove("checked");
     button.setAttribute("aria-pressed", "false");
   });
+  resetCounts();
+};
+
+const renderCount = (key) => {
+  const valueElement = document.querySelector(`[data-count-value="${key}"]`);
+
+  if (valueElement) {
+    valueElement.textContent = countState[key];
+  }
+};
+
+const resetCounts = () => {
+  Object.keys(countState).forEach((key) => {
+    countState[key] = 0;
+    renderCount(key);
+  });
 };
 
 const loadEntries = () => {
@@ -152,6 +173,9 @@ const saveEntry = () => {
     checks: Object.fromEntries(
       checkButtons.map((button) => [button.dataset.check, button.classList.contains("checked")]),
     ),
+    counts: {
+      ...countState,
+    },
     strokes,
   });
 
@@ -185,6 +209,14 @@ checkButtons.forEach((button) => {
   });
 });
 
+countButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const key = button.dataset.count;
+    countState[key] += 1;
+    renderCount(key);
+  });
+});
+
 clearButton.addEventListener("click", clearInk);
 saveButton.addEventListener("click", saveEntry);
 nextButton.addEventListener("click", closeComplete);
@@ -194,4 +226,5 @@ window.addEventListener("resize", () => {
 
 canvases.forEach(setupCanvas);
 updateClock();
+resetCounts();
 setInterval(updateClock, 30_000);

@@ -20,10 +20,6 @@
               <span>방문 날짜</span>
               <strong id="dateCell">-</strong>
             </div>
-            <div>
-              <span>방문 시각</span>
-              <strong id="timeCell">-</strong>
-            </div>
           </div>
         </header>
 
@@ -49,18 +45,16 @@
           </div>
 
           <div class="companion-card">
-            <span class="field-label">동행인 수 <small>(누르면 +1)</small></span>
+            <span class="field-label">동행인 수</span>
             <div class="companion-grid">
-              <button class="count-button" type="button" data-count="maleCount" aria-label="남자 동행인 수 증가">
+              <div class="mini-field">
                 <span>남자</span>
-                <strong data-count-value="maleCount">0</strong>
-                <small>누르면 +1</small>
-              </button>
-              <button class="count-button" type="button" data-count="femaleCount" aria-label="여자 동행인 수 증가">
+                <canvas class="ink-canvas" data-field="maleCount"></canvas>
+              </div>
+              <div class="mini-field">
                 <span>여자</span>
-                <strong data-count-value="femaleCount">0</strong>
-                <small>누르면 +1</small>
-              </button>
+                <canvas class="ink-canvas" data-field="femaleCount"></canvas>
+              </div>
             </div>
           </div>
 

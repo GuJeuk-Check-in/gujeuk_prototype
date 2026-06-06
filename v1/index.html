@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>첫 방문 수기 등록</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=7" />
   </head>
   <body>
     <main class="tablet">
@@ -23,6 +23,12 @@
           </div>
         </header>
 
+        <div class="system-status" id="systemStatus" aria-live="polite">
+          <span id="purposeStatus">방문목적 목록을 불러오는 중입니다.</span>
+          <span id="syncStatus">저장 대기 데이터를 확인하는 중입니다.</span>
+          <button type="button" id="retrySyncButton">다시 연결</button>
+        </div>
+
         <section class="writing-board" aria-label="방문자 수기 입력">
           <div class="field-card field-name">
             <span class="field-label">이름</span>
@@ -39,9 +45,9 @@
             <canvas class="ink-canvas" data-field="contact"></canvas>
           </div>
 
-          <div class="field-card field-purpose">
+          <div class="field-card field-purpose purpose-card">
             <span class="field-label">방문목적</span>
-            <canvas class="ink-canvas" data-field="purpose"></canvas>
+            <div class="purpose-options" id="purposeOptions" role="group" aria-label="방문목적 선택"></div>
           </div>
 
           <div class="companion-card">
@@ -69,19 +75,88 @@
 
         <footer class="paper-actions">
           <button class="action secondary" type="button" id="clearButton">지우기</button>
-          <button class="action primary" type="button" id="saveButton">등록 완료</button>
+          <button class="action primary" type="button" id="saveButton">인식 결과 확인</button>
         </footer>
       </section>
     </main>
+
+    <section class="review" id="reviewLayer" aria-live="polite" aria-hidden="true">
+      <form class="review-card" id="reviewForm">
+        <header class="review-header">
+          <div>
+            <strong>인식 결과 확인</strong>
+            <p class="recognition-message" id="recognitionMessage">작성한 필기를 인식하고 있습니다.</p>
+            <small>인식 서버가 응답하지 않아도 원본 필기는 기기에 안전하게 저장할 수 있습니다.</small>
+          </div>
+          <span id="reviewDateText">-</span>
+        </header>
+
+        <div class="review-grid">
+          <label class="review-field">
+            <span>이름</span>
+            <input name="name" type="text" maxlength="30" placeholder="인식된 이름" />
+          </label>
+
+          <label class="review-field">
+            <span>나이</span>
+            <input name="age" type="number" min="0" max="130" inputmode="numeric" placeholder="인식된 나이" />
+          </label>
+
+          <label class="review-field wide">
+            <span>연락처</span>
+            <input name="contact" type="tel" inputmode="tel" maxlength="13" placeholder="인식된 연락처" />
+          </label>
+
+          <label class="review-field wide">
+            <span>방문목적</span>
+            <select name="purpose" required>
+              <option value="">방문목적을 선택해주세요.</option>
+            </select>
+          </label>
+
+          <label class="review-field">
+            <span>남자 동행인 수</span>
+            <input name="maleCount" type="number" min="0" max="99" inputmode="numeric" placeholder="0" />
+          </label>
+
+          <label class="review-field">
+            <span>여자 동행인 수</span>
+            <input name="femaleCount" type="number" min="0" max="99" inputmode="numeric" placeholder="0" />
+          </label>
+
+          <label class="review-consent">
+            <span>개인정보 동의 여부</span>
+            <input name="privacyAgreed" type="checkbox" />
+          </label>
+
+          <section class="save-preview">
+            <div>
+              <strong>최종 저장 정보</strong>
+              <span>최종 저장을 누르면 아래 내용으로 저장됩니다.</span>
+            </div>
+            <div class="save-data-list" id="saveDataPreview"></div>
+          </section>
+        </div>
+
+        <footer class="review-actions">
+          <button class="action secondary" type="button" id="editHandwritingButton">수기 수정</button>
+          <button class="action secondary recognition-skip" type="button" id="skipRecognitionButton">
+            인식 없이 계속
+          </button>
+          <button class="action primary" type="submit" id="finalSaveButton">최종 저장</button>
+        </footer>
+      </form>
+    </section>
 
     <section class="complete" id="completeLayer" aria-live="polite" aria-hidden="true">
       <div class="complete-card">
         <strong>등록되었습니다.</strong>
         <span id="savedAtText">-</span>
+        <p id="submissionStatusText">서버 저장 상태를 확인하고 있습니다.</p>
         <button class="action primary" type="button" id="nextButton">다음 작성</button>
       </div>
     </section>
 
-    <script src="./app.js" defer></script>
+    <script src="./app.js?v=12" defer></script>
   </body>
 </html>

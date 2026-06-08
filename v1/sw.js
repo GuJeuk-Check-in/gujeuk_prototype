@@ -1,4 +1,4 @@
-const CACHE_NAME = "gujeuk-v1-shell-20260606-v3";
+const CACHE_NAME = "gujeuk-v1-shell-20260608-v1";
 const APP_SHELL = ["./", "./index.html", "./styles.css", "./app.js"];
 
 self.addEventListener("install", (event) => {
@@ -33,7 +33,10 @@ self.addEventListener("fetch", (event) => {
 
   const requestUrl = new URL(event.request.url);
 
-  if (requestUrl.origin !== self.location.origin) {
+  if (
+    requestUrl.origin !== self.location.origin ||
+    requestUrl.pathname.startsWith("/backend/")
+  ) {
     return;
   }
 

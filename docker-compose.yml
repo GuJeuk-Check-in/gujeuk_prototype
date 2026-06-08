@@ -1,0 +1,10 @@
+services:
+  prototype:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gujeuk-prototype:latest
+    container_name: gujeuk-prototype
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${APP_PORT:-8788}:80"
